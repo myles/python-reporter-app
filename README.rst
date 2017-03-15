@@ -1,0 +1,30 @@
+===================
+Python Reporter App
+===================
+
+.. image:: https://img.shields.io/travis/myles/python-reporter-app.svg
+        :target: https://travis-ci.org/myles/python-reporter-app
+        :alt: CI Status
+
+.. image:: https://pyup.io/repos/github/myles/python-reporter-app/shield.svg
+        :target: https://pyup.io/repos/github/myles/python-reporter-app/
+        :alt: Dependencies Status
+
+.. image:: https://readthedocs.org/projects/python-reporter-app/badge/?version=master
+        :target: http://python-reporter-app.readthedocs.io/en/master/?badge=master
+        :alt: Documentation Status
+
+A Python library for interacting with Reporter App exports.
+
+* Free software: MIT License
+
+Features
+--------
+
+* TODO
+
+Quick Start
+-----------
+
+    >>> from reporterapp import Reporter
+    >>> r = Reporter('')
