@@ -80,7 +80,7 @@ docs-deploy:
 	# clone the entire repo into this directory (yes, this duplicates it)
 	git clone --branch=gh-pages git@github.com:myles/python-reporter-app.git /tmp/python-report-app-docs
 
-	$(MAKE) -C docs
+	$(MAKE) -C docs html
 
 	cp -r docs/_build/html/* /tmp/python-report-app-docs/
 
