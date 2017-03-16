@@ -85,8 +85,8 @@ docs-deploy:
 	cp -r docs/_build/html/* /tmp/python-report-app-docs/
 
 	# now, add these bad-boys to the gh-pages repo, along with .nojekyll:
+	touch /tmp/python-report-app-docs/.nojekyll
 	cd /tmp/python-report-app-docs/
-	touch .nojekyll
 	git add .
 	git commit -m 'first docs to gh-pages'
 	git push origin gh-pages
