@@ -31,6 +31,10 @@ setup(
     ],
     license='MIT license',
     install_requires=requirements,
+    extras_require={
+        'dropbox': ['dropbox'],
+        'cli': ['click']
+    },
     zip_safe=False,
     test_suite='tests',
     tests_require=test_requirements

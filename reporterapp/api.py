@@ -7,14 +7,39 @@ from .models import Question, Snapshot
 
 class ReporterApp(object):
 
-    def __init__(self, path=expanduser('~/Dropbox/Apps/Reporter-App')):
+    def __init__(self, path=expanduser('~/Dropbox/Apps/Reporter-App'),
+                 dropbox=None):
         self.snapshots = []
         self.questions = []
 
-        self.load_exports(path)
+        if dropbox:
+            self.load_dropbox_exports(dropbox)
+        else:
+            self.load_exports(path)
 
     # Private Methods
-    def load_exports(self, path):
+    def load_dropbox_exports(self, access_token):
+        """
+        Private function for loading exports from Dropbox.
+        """
+        snapshots = []
+        questions = []
+
+        from dropbox import Dropbox
+
+        dbx = Dropbox(access_token)
+
+        for entry in dbx.files_list_folder('/Apps/Reporter-App').entries:
+            meta, resp = dbx.files_download(entry.path_lower)
+            data = json.loads(resp.content)
+
+            snapshots += data['snapshots']
+            questions += data['questions']
+
+        self.questions = Question.parse_list(questions)
+        self.snapshots = Snapshot.parse_list(snapshots, self.questions)
+
+    def load_local_exports(self, path):
         """
         Private function for loading multiple export files.
         """
@@ -22,7 +47,7 @@ class ReporterApp(object):
         questions = []
 
         if isfile(path):
-            data = self.load_export(path)
+            data = self.load_local_export(path)
 
             snapshots = data['snapshots']
             questions = data['questions']
@@ -30,7 +55,7 @@ class ReporterApp(object):
             export_files = glob(join(path, '*-reporter-export.json'))
 
             for export_file in export_files:
-                data = self.load_export(export_file)
+                data = self.load_local_export(export_file)
 
                 snapshots += data['snapshots']
                 questions += data['questions']
@@ -38,7 +63,7 @@ class ReporterApp(object):
         self.questions = Question.parse_list(questions)
         self.snapshots = Snapshot.parse_list(snapshots, self.questions)
 
-    def load_export(self, export_file):
+    def load_local_export(self, export_file):
         """
         Private function for loading an export file.
         """

@@ -15,3 +15,5 @@ twine = "*"
 
 [packages]
 python-dateutil = "*"
+dropbox = "*"
+click = "*"
