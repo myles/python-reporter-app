@@ -26,5 +26,13 @@ Features
 Quick Start
 -----------
 
-    >>> from reporterapp import Reporter
-    >>> r = Reporter('')
+    >>> from reporterapp import ReporterApp
+    >>> r = ReporterApp()
+    >>> for s in r.snapshots:
+    ...     print(s.batteryDisplay)
+    ...
+    ...
+    60%
+    56%
+    39%
+    100%

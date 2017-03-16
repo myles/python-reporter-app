@@ -18,7 +18,7 @@ setup(
     author='Myles Braithwaite',
     author_email='me@mylesbraithwaite.com',
     description='A Python Library for Reporter App.',
-    keywords='wordpress',
+    keywords='reporterapp',
     url='https://github.com/myles/python-reporter-app',
     packages=['reporter-app'],
     package_dir={'reporter-app': 'reporterapp'},

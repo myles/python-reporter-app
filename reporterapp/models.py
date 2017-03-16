@@ -95,7 +95,7 @@ class Snapshot(Model):
                 setattr(snapshot, 'reportImpetusDisplay',
                         REPORT_IMPETUS_DISPLAY[v])
             elif k == 'battery':
-                setattr(snapshot, 'batteryDisplay', '{}%'.format(v*100))
+                setattr(snapshot, 'batteryDisplay', '{:.0f}%'.format(v*100))
             elif k in ['background', 'draft']:
                 setattr(snapshot, k, bool(v))
             elif k == 'responses':

@@ -2,7 +2,22 @@
 Usage
 =====
 
-To use Python WordPress in a project::
+To use Python Reporter App in a project::
 
-    from reporterapp import Reporter
-    wp = Reporter()
+    from reporterapp import ReporterApp
+    r = ReporterApp()
+
+Get a list of questions::
+
+    for q in r.questions:
+        q.prompt
+
+Get a list of snapshots::
+
+    for s in r.snapshots:
+        s.uniqueIdentifer
+
+Get a list of snapshots by question::
+
+    for s in r.get_by_prompt():
+        s.uniqueIdentifer
