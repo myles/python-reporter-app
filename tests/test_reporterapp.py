@@ -12,14 +12,14 @@ class TestReporterApp(unittest.TestCase):
         self.fixture = join(self.fixture_dir,
                             '2017-01-01-reporter-export.json')
 
-    def test_load_export(self):
+    def test_load_local_export(self):
         reporter = ReporterApp(self.fixture_dir)
-        self.assertTrue(reporter.load_export(self.fixture))
+        self.assertTrue(reporter.load_local_export(self.fixture))
 
-    def test_load_exports_one(self):
+    def test_load_local_exports_one(self):
         reporter = ReporterApp(self.fixture)
         self.assertTrue(reporter)
 
-    def test_load_exports_multiple(self):
+    def test_load_local_exports_multiple(self):
         reporter = ReporterApp(self.fixture_dir)
         self.assertTrue(reporter)
