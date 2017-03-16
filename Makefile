@@ -47,6 +47,9 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
+clean-docs:
+	rm -fr docs/_build/html
+
 lint: ## check style with flake8
 	flake8 reporterapp tests
 
@@ -72,6 +75,24 @@ docs: ## generate Sphinx HTML documentation, including API docs
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+
+docs-deploy:
+	# clone the entire repo into this directory (yes, this duplicates it)
+	git clone --branch=gh-pages git@github.com:myles/python-reporter-app.git /tmp/python-report-app-docs
+
+	$(MAKE) -C docs
+
+	cp -r docs/_build/html/* /tmp/python-report-app-docs/
+
+	# now, add these bad-boys to the gh-pages repo, along with .nojekyll:
+	cd /tmp/python-report-app-docs/
+	touch .nojekyll
+	git add .
+	git commit -m 'first docs to gh-pages'
+	git push origin gh-pages
+
+	# Delete all the old repos
+	rm -fr /tmp/python-report-app-docs
 
 release: clean ## package and upload a release
 	python setup.py sdist upload
