@@ -10,10 +10,6 @@ Python Reporter App
         :target: https://pyup.io/repos/github/myles/python-reporter-app/
         :alt: Dependencies Status
 
-.. image:: https://readthedocs.org/projects/python-reporter-app/badge/?version=master
-        :target: http://python-reporter-app.readthedocs.io/en/master/?badge=master
-        :alt: Documentation Status
-
 A Python library for interacting with Reporter App exports.
 
 * Free software: MIT License
