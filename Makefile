@@ -87,9 +87,9 @@ docs-deploy:
 	# now, add these bad-boys to the gh-pages repo, along with .nojekyll:
 	touch /tmp/python-report-app-docs/.nojekyll
 	cd /tmp/python-report-app-docs/
-	git add .
-	git commit -m 'first docs to gh-pages'
-	git push origin gh-pages
+	cd /tmp/python-report-app-docs/; git add .
+	cd /tmp/python-report-app-docs/; git commit -m 'first docs to gh-pages'
+	cd /tmp/python-report-app-docs/; git push origin gh-pages
 
 	# Delete all the old repos
 	rm -fr /tmp/python-report-app-docs
