@@ -21,7 +21,7 @@ setup(
     keywords='wordpress',
     url='https://github.com/myles/python-reporter-app',
     packages=['reporter-app'],
-    package_dir={'reporterapp': 'reporterapp'},
+    package_dir={'reporter-app': 'reporterapp'},
     include_package_data=True,
     long_description=readme,
     classifiers=[

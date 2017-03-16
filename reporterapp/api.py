@@ -5,34 +5,32 @@ from os.path import expanduser, isfile, join
 from .models import Question, Snapshot
 
 
-class Reporter(object):
+class ReporterApp(object):
 
     def __init__(self, path=expanduser('~/Dropbox/Apps/Reporter-App')):
-        self.path = path
-
         self.snapshots = []
         self.questions = []
 
-        self._load_exports()
+        self.load_exports(path)
 
     # Private Methods
-    def _load_exports(self):
+    def load_exports(self, path):
         """
         Private function for loading multiple export files.
         """
         snapshots = []
         questions = []
 
-        if isfile(self.path):
-            data = self._load_export(self.path)
+        if isfile(path):
+            data = self.load_export(path)
 
             snapshots = data['snapshots']
             questions = data['questions']
         else:
-            export_files = glob(join(self.path, '*-reporter-export.json'))
+            export_files = glob(join(path, '*-reporter-export.json'))
 
             for export_file in export_files:
-                data = self._load_export(export_file)
+                data = self.load_export(export_file)
 
                 snapshots += data['snapshots']
                 questions += data['questions']
@@ -40,7 +38,7 @@ class Reporter(object):
         self.questions = Question.parse_list(questions)
         self.snapshots = Snapshot.parse_list(snapshots, self.questions)
 
-    def _load_export(self, export_file):
+    def load_export(self, export_file):
         """
         Private function for loading an export file.
         """

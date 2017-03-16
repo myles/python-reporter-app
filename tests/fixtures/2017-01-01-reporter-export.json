@@ -1,0 +1,204 @@
+{
+  "snapshots" : [
+    {
+      "steps" : 0,
+      "responses" : [
+        {
+          "locationResponse" : {
+            "text" : "George Vari Engineering and Computing Centre",
+            "location" : {
+              "speed" : -1,
+              "timestamp" : "2017-01-01T20:31:48-0400",
+              "longitude" : -79.37757068043689,
+              "latitude" : 43.65787785278781,
+              "verticalAccuracy" : -1,
+              "uniqueIdentifier" : "766E8416-C0D8-460C-AD1D-4BE2E5785481",
+              "course" : 0,
+              "altitude" : 0,
+              "horizontalAccuracy" : 0
+            },
+            "uniqueIdentifier" : "C17FD925-7B15-4C42-9356-CFB005197DA0",
+            "foursquareVenueId" : "4b02f140f964a520404b22e3"
+          },
+          "questionPrompt" : "Where are you?",
+          "uniqueIdentifier" : "46DC48FF-DA77-4E8B-B86C-52AD2628C061"
+        },
+        {
+          "questionPrompt" : "Are you working?",
+          "uniqueIdentifier" : "8EEC0753-8615-4AD5-8DD5-1B210AA91763",
+          "answeredOptions" : [
+            "No"
+          ]
+        },
+        {
+          "tokens" : [
+            {
+              "uniqueIdentifier" : "2FA8D556-EFC2-4F48-8AB4-F2169C934BA2",
+              "text" : "John Smith"
+            }
+          ],
+          "questionPrompt" : "Who are you with?",
+          "uniqueIdentifier" : "5E687CFE-B459-4A05-B341-0E8000EC13A4"
+        },
+        {
+          "tokens" : [
+            {
+              "uniqueIdentifier" : "614F758A-9FF1-42DC-9D72-299C3DCF5309",
+              "text" : "At a GTALUG meeting."
+            }
+          ],
+          "questionPrompt" : "What are you doing?",
+          "uniqueIdentifier" : "E182B5E5-37DE-4B52-8C31-1788E45122F9"
+        }
+      ],
+      "battery" : 0.6,
+      "sectionIdentifier" : "1-2017-1-1",
+      "audio" : {
+        "avg" : -47.39618,
+        "peak" : -34.78878,
+        "uniqueIdentifier" : "5D00AC78-4FB2-4048-9A57-31D233B4CDD9"
+      },
+      "background" : 0,
+      "date" : "2017-01-01T20:31:42-0400",
+      "uniqueIdentifier" : "477BB3E8-7216-41EC-BCF3-D1779B507271",
+      "location" : {
+        "speed" : -1,
+        "placemark" : {
+          "subAdministrativeArea" : "Toronto",
+          "subLocality" : "The Village",
+          "thoroughfare" : "Church St",
+          "administrativeArea" : "ON",
+          "uniqueIdentifier" : "A52AAC62-46B8-45A0-992D-C3FD86AB1610",
+          "subThoroughfare" : "245",
+          "postalCode" : "M5B 1Z4",
+          "region" : "<+43.65765170,-79.37739130> radius 70.84",
+          "country" : "Canada",
+          "locality" : "Toronto",
+          "name" : "Ryerson University"
+        },
+        "timestamp" : "2017-01-01T20:31:44-0400",
+        "longitude" : -79.37760239047719,
+        "latitude" : 43.65788422853863,
+        "verticalAccuracy" : 10,
+        "uniqueIdentifier" : "F67E9663-DDDF-4ED7-824F-60780C55607B",
+        "course" : 0,
+        "altitude" : 110.7149658203125,
+        "horizontalAccuracy" : 65
+      },
+      "weather" : {
+        "relativeHumidity" : "88%",
+        "visibilityKM" : 8,
+        "tempC" : -7.8,
+        "uniqueIdentifier" : "C6D5135C-83CF-4146-9799-9D5FDB71F716",
+        "precipTodayIn" : 0,
+        "windKPH" : 12.1,
+        "windDegrees" : 13,
+        "latitude" : 43.656521,
+        "stationID" : "IONTORON58",
+        "visibilityMi" : 5,
+        "pressureIn" : 29.98,
+        "pressureMb" : 1015,
+        "feelslikeF" : 8,
+        "longitude" : -79.35726200000001,
+        "feelslikeC" : -13,
+        "tempF" : 18,
+        "precipTodayMetric" : 0,
+        "windGustKPH" : 23,
+        "windDirection" : "NNE",
+        "dewpointC" : -9,
+        "uv" : 0,
+        "weather" : "Light Snow",
+        "windGustMPH" : 14.3,
+        "windMPH" : 7.5
+      },
+      "connection" : 0,
+      "altitude" : {
+        "gpsAltitudeFromLocation" : 91.20999999999999,
+        "uniqueIdentifier" : "F95E733C-A614-4EFB-953E-4A7FBCF46671",
+        "gpsRawAltitude" : 110.7149658203125
+      },
+      "reportImpetus" : 0,
+      "draft" : 0
+    }
+  ],
+  "questions" : [
+    {
+      "questionType" : 0,
+      "prompt" : "What are you doing?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 1,
+          "uniqueIdentifier" : "5AB33DDC-681A-4E4B-9D6B-7D0C4BBF5DC2"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-3"
+    },
+    {
+      "questionType" : 4,
+      "prompt" : "Who are you with?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 1,
+          "uniqueIdentifier" : "398AA73B-BA08-44A7-B9C4-A778FFD2E542"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-5",
+      "placeholderString" : "No one"
+    },
+    {
+      "questionType" : 6,
+      "prompt" : "What did you learn today?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 2,
+          "uniqueIdentifier" : "7002BE9A-227F-49A1-9AF7-5669E0498DBE"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-7"
+    },
+    {
+      "questionType" : 2,
+      "prompt" : "Are you working?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 4,
+          "uniqueIdentifier" : "0E81610F-DD9B-4D0E-BF15-68B784183733"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-2"
+    },
+    {
+      "questionType" : 3,
+      "prompt" : "Where are you?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 1,
+          "uniqueIdentifier" : "2DE99DFE-D09D-4F15-8FE0-7E1114984650"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-4"
+    },
+    {
+      "questionType" : 5,
+      "prompt" : "How many coffees did you have today?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 3,
+          "uniqueIdentifier" : "CFDCEE59-A9C0-47DE-95DA-D5AE4A612F67"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-6"
+    },
+    {
+      "questionType" : 1,
+      "prompt" : "How did you sleep?",
+      "selectedVisualizations" : [
+        {
+          "typeId" : 4,
+          "uniqueIdentifier" : "AEBEADF6-3ABA-445F-AE56-A69C75743820"
+        }
+      ],
+      "uniqueIdentifier" : "default-question-1"
+    }
+  ]
+}
