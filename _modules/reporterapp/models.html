@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>reporterapp.models &#8212; python-reporter-app 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">python-reporter-app 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for reporterapp.models</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dateutil.parser</span> <span class="k">import</span> <span class="n">parse</span> <span class="k">as</span> <span class="n">date_parse</span>
+
+<span class="n">REPORT_IMPETUS_DISPLAY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Report button tapped&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Report button tapped while Reporter is asleep&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Report triggered by notification&#39;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Report triggered by setting app to sleep&#39;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Report triggered by waking up app&#39;</span>
+<span class="p">}</span>
+
+<span class="n">CONNECTION_DISPLAY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Device is connected via cellular network&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Device is connected via WiFi&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Device is not connected&#39;</span>
+<span class="p">}</span>
+
+<span class="n">QUESTION_TYPE_DISPLAY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Tokens&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Multi-Choice&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Yes / No&#39;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Location&#39;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;People&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Number&#39;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Note&#39;</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="ResultSet"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.ResultSet">[docs]</a><span class="k">class</span> <span class="nc">ResultSet</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A list of like object that holds results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ResultSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ResultSet.uniqueIdentifiers"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.ResultSet.uniqueIdentifiers">[docs]</a>    <span class="k">def</span> <span class="nf">uniqueIdentifiers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;uniqueIdentifier&#39;</span><span class="p">):</span>
+                <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">uniqueIdentifier</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ids</span></div>
+
+<div class="viewcode-block" id="ResultSet.get_by_prompt"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.ResultSet.get_by_prompt">[docs]</a>    <span class="k">def</span> <span class="nf">get_by_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">prompt</span> <span class="o">==</span> <span class="n">prompt</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">item</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
+
+
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Model.parse"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Model.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a JSON object into a model instance.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Model.parse_list"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Model.parse_list">[docs]</a>    <span class="k">def</span> <span class="nf">parse_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prase a list of JSON objects into a result set of model instances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">ResultSet</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">results</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">(</span><span class="si">{1}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">uniqueIdentifier</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Snapshot"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Snapshot">[docs]</a><span class="k">class</span> <span class="nc">Snapshot</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Reporter App Snapshot.&quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Snapshot.parse"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Snapshot.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">questions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parse a JSON object into a Snapshot instance.&quot;&quot;&quot;</span>
+        <span class="n">snapshot</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="s1">&#39;_json&#39;</span><span class="p">,</span> <span class="n">json</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">date_parse</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;connection&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="s1">&#39;connectionDisplay&#39;</span><span class="p">,</span> <span class="n">CONNECTION_DISPLAY</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;reportImpetus&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="s1">&#39;reportImpetusDisplay&#39;</span><span class="p">,</span>
+                        <span class="n">REPORT_IMPETUS_DISPLAY</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;battery&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="s1">&#39;batteryDisplay&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:.0f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;background&#39;</span><span class="p">,</span> <span class="s1">&#39;draft&#39;</span><span class="p">]:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;responses&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">Response</span><span class="o">.</span><span class="n">parse_list</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">questions</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">snapshot</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Snapshot.parse_list"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Snapshot.parse_list">[docs]</a>    <span class="k">def</span> <span class="nf">parse_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json_list</span><span class="p">,</span> <span class="n">questions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prase a list of JSON objects into a result set of model instances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">ResultSet</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">questions</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">results</span></div></div>
+
+
+<div class="viewcode-block" id="Question"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Question">[docs]</a><span class="k">class</span> <span class="nc">Question</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Reporter App Question.&quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Question.parse"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Question.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prase a JSON object into a Question instance.&quot;&quot;&quot;</span>
+        <span class="n">question</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="s1">&#39;_json&#39;</span><span class="p">,</span> <span class="n">json</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;questionType&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="s1">&#39;questionTypeDisplay&#39;</span><span class="p">,</span>
+                        <span class="n">QUESTION_TYPE_DISPLAY</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">question</span></div></div>
+
+
+<div class="viewcode-block" id="Response"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Snapshot Response.&quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Response.parse"><a class="viewcode-back" href="../../reporterapp.html#reporterapp.models.Response.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">questions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prase a JSON object into a Response instance.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;_json&#39;</span><span class="p">,</span> <span class="n">json</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;questionPrompt&#39;</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s1">&#39;question&#39;</span><span class="p">,</span>
+                        <span class="n">questions</span><span class="o">.</span><span class="n">get_by_prompt</span><span class="p">(</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;questionPrompt&#39;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">python-reporter-app 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, python-reporter-app.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>
