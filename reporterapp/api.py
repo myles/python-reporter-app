@@ -15,7 +15,7 @@ class ReporterApp(object):
         if dropbox:
             self.load_dropbox_exports(dropbox)
         else:
-            self.load_exports(path)
+            self.load_local_exports(path)
 
     # Private Methods
     def load_dropbox_exports(self, access_token):

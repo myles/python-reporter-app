@@ -35,6 +35,10 @@ setup(
         'dropbox': ['dropbox'],
         'cli': ['click']
     },
+    entry_points="""
+        [console_scripts]
+        reporter-app=reporterapp.cli:cli
+    """,
     zip_safe=False,
     test_suite='tests',
     tests_require=test_requirements
