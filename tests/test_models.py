@@ -20,7 +20,7 @@ class TestResultSet(unittest.TestCase):
         self.result_set += [model_one, model_two]
 
     def test_uniqueIdentifiers(self):
-        self.assertEquals(self.result_set.uniqueIdentifiers(), [1, 2])
+        self.assertEquals(self.result_set.uniqueIdentifiers, [1, 2])
 
 
 class TestModel(unittest.TestCase):
