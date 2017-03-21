@@ -1,6 +1,6 @@
 build: false
 
-version: v0.1.1-{branch}-{build}
+version: v0.1.2-{branch}-{build}
 
 environment:
   matrix:
