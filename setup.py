@@ -14,7 +14,7 @@ test_requirements = []
 
 setup(
     name='python-reporter-app',
-    version='0.1.0',
+    version='0.1.1',
     author='Myles Braithwaite',
     author_email='me@mylesbraithwaite.com',
     description='A Python Library for Reporter App.',
