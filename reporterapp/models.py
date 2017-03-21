@@ -33,6 +33,7 @@ class ResultSet(list):
     def __init__(self):
         super(ResultSet, self).__init__()
 
+    @property
     def uniqueIdentifiers(self):
         ids = []
 
@@ -41,15 +42,6 @@ class ResultSet(list):
                 ids.append(item.uniqueIdentifier)
 
         return ids
-
-    def get_by_prompt(self, prompt):
-        result = None
-
-        for item in self:
-            if item.prompt == prompt:
-                result = item
-
-        return result
 
 
 class Model(object):
@@ -87,21 +79,27 @@ class Snapshot(Model):
         setattr(snapshot, '_json', json)
 
         for k, v in json.items():
+            setattr(snapshot, k, v)
+
             if k == 'date':
                 setattr(snapshot, k, date_parse(v).replace(tzinfo=None))
-            elif k == 'connection':
+
+            if k == 'connection':
                 setattr(snapshot, 'connectionDisplay', CONNECTION_DISPLAY[v])
-            elif k == 'reportImpetus':
+
+            if k == 'reportImpetus':
                 setattr(snapshot, 'reportImpetusDisplay',
                         REPORT_IMPETUS_DISPLAY[v])
-            elif k == 'battery':
-                setattr(snapshot, 'batteryDisplay', '{:.0f}%'.format(v*100))
-            elif k in ['background', 'draft']:
-                setattr(snapshot, k, bool(v))
-            elif k == 'responses':
-                setattr(snapshot, k, Response.parse_list(v, questions))
-            else:
+
+            if k == 'battery':
                 setattr(snapshot, k, v)
+                setattr(snapshot, 'batteryDisplay', '{:.0f}%'.format(v*100))
+
+            if k in ['background', 'draft']:
+                setattr(snapshot, k, bool(v))
+
+            if k == 'responses':
+                setattr(snapshot, k, Response.parse_list(v, questions))
 
         return snapshot
 
@@ -119,6 +117,22 @@ class Snapshot(Model):
         return results
 
 
+class QuestionList(ResultSet):
+    """A Reporter App Question List."""
+
+    def list_prompt(self):
+        return [x.prompt for x in self]
+
+    def get_prompt(self, prompt):
+        result = None
+
+        for item in self:
+            if item.prompt == prompt:
+                result = item
+
+        return result
+
+
 class Question(Model):
     """A Reporter App Question."""
 
@@ -129,13 +143,49 @@ class Question(Model):
         setattr(question, '_json', json)
 
         for k, v in json.items():
+            setattr(question, k, v)
+
             if k == 'questionType':
                 setattr(question, 'questionTypeDisplay',
                         QUESTION_TYPE_DISPLAY[v])
-            else:
-                setattr(question, k, v)
 
         return question
+
+    @classmethod
+    def parse_list(cls, json_list):
+        """
+        Prase a list of JSON objects into a result set of model instances.
+        """
+        results = QuestionList()
+
+        for obj in json_list:
+            if obj and obj['prompt'] not in results.list_prompt():
+                results.append(cls.parse(obj))
+
+        return results
+
+    def __repr__(self):
+        return '{0}({1})'.format(self.__class__.__name__,
+                                 self.prompt)
+
+
+class ResponseLocation(Model):
+    """A Snaphot Location Response."""
+
+    @classmethod
+    def parse(cls, json):
+        """Prase a JSON object into a ResponseLocation instance."""
+        response_location = cls()
+        setattr(response_location, '_json', json)
+
+        for k, v in json.items():
+            setattr(response_location, k, v)
+
+        return response_location
+
+    @property
+    def foursquareUrl(self):
+        return 'https://foursquare.com/v/{0}'.format(self.foursquareVenueId)
 
 
 class Response(Model):
@@ -148,10 +198,16 @@ class Response(Model):
         setattr(response, '_json', json)
 
         for k, v in json.items():
+            setattr(response, k, v)
+
             if k == 'questionPrompt':
                 setattr(response, 'question',
-                        questions.get_by_prompt(json['questionPrompt']))
-            else:
-                setattr(response, k, v)
+                        questions.get_prompt(json['questionPrompt']))
+
+            if k == 'tokens':
+                setattr(response, k, [x['text'] for x in v])
+
+            if k == 'locationResponse':
+                setattr(response, k, ResponseLocation.parse(v))
 
         return response

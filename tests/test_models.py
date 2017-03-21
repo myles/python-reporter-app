@@ -22,10 +22,6 @@ class TestResultSet(unittest.TestCase):
     def test_uniqueIdentifiers(self):
         self.assertEquals(self.result_set.uniqueIdentifiers(), [1, 2])
 
-    def test_get_by_prompt(self):
-        m = self.result_set.get_by_prompt('Prompt 1')
-        self.assertEquals(m.uniqueIdentifier, 1)
-
 
 class TestModel(unittest.TestCase):
 

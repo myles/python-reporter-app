@@ -71,7 +71,3 @@ class ReporterApp(object):
             data = json.loads(fobj.read())
 
         return data
-
-    # Public Methods
-    def get_by_prompt(self, prompt):
-        return self.snapshot.get_by_prompt(prompt)
