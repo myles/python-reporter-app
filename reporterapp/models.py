@@ -76,7 +76,6 @@ class Snapshot(Model):
     def parse(cls, json, questions):
         """Parse a JSON object into a Snapshot instance."""
         snapshot = cls()
-        setattr(snapshot, '_json', json)
 
         for k, v in json.items():
             setattr(snapshot, k, v)
@@ -140,7 +139,6 @@ class Question(Model):
     def parse(cls, json):
         """Prase a JSON object into a Question instance."""
         question = cls()
-        setattr(question, '_json', json)
 
         for k, v in json.items():
             setattr(question, k, v)
@@ -176,7 +174,6 @@ class ResponseLocation(Model):
     def parse(cls, json):
         """Prase a JSON object into a ResponseLocation instance."""
         response_location = cls()
-        setattr(response_location, '_json', json)
 
         for k, v in json.items():
             setattr(response_location, k, v)
@@ -195,7 +192,6 @@ class Response(Model):
     def parse(cls, json, questions):
         """Prase a JSON object into a Response instance."""
         response = cls()
-        setattr(response, '_json', json)
 
         for k, v in json.items():
             setattr(response, k, v)
